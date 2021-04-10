@@ -169,7 +169,6 @@ export default function AddEmployee() {
           </Grid>
         </form>
         <Typography style={{ margin: 7 }} variant="body1">
-          Status: {message}
           <br></br> Project Managed by Sujay Homelab
         </Typography>
       </div>
