@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springapp-deployment
+  namespace: home-lab
+  labels:
+    app: springapp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springapp-deployment
+  template:
+    metadata:
+      labels:
+        app: springapp-deployment
+    spec:
+      containers:
+        - name: springapp
+          image: docker.io/sujaydevops/springboot-app:1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springapp-deployment-service
+  labels:
+    app: springapp-deployment
+spec:
+  selector:
+    app: springapp-deployment
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
